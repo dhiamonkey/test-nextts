@@ -47,11 +47,11 @@ const Home: NextPage = (AllData: any) => {
 };
 
 export async function getServerSideProps() {
-  const newsResponse = await fetch(`http://localhost:3000/api/news`);
+  const newsResponse = await fetch(`api/news`);
   const newsdata = await newsResponse.json();
-  const liveResponse = await fetch(`http://localhost:3000/api/livestream`);
+  const liveResponse = await fetch(`api/livestream`);
   const livedata = await liveResponse.json();
-  const quizResponse = await fetch(`http://localhost:3000/api/quiz`);
+  const quizResponse = await fetch(`api/quiz`);
   const quizdata = await quizResponse.json();
 
   return {
