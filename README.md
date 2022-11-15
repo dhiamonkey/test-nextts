@@ -48,7 +48,7 @@
 
 Hello, this is my attempt on doing the entry test as a Front End Engineer for IDN MEDIA
 
-<p align="left"><a href="#readme-top">--VIEW DEMO</a></p>
+<p align="left"><a href="https://idn-testcase-dhia.vercel.app/">VIEW DEMO</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
