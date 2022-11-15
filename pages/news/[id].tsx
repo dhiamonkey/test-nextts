@@ -43,17 +43,33 @@ const News = (data: any) => {
 };
 
 export async function getServerSideProps(context) {
-  const { params } = context;
+  if (process.env.NODE_ENV === "development") {
+    const { params } = context;
 
-  const { id } = params;
-  const response = await fetch(`http://localhost:3000/api/news?id=${id}`);
+    const { id } = params;
+    const response = await fetch(`${process.env.LOCAL_URL}/api/news?id=${id}`);
 
-  const data = await response.json();
-  return {
-    props: {
-      data,
-    },
-  };
+    const data = await response.json();
+    return {
+      props: {
+        data,
+      },
+    };
+  } else {
+    const { params } = context;
+
+    const { id } = params;
+    const response = await fetch(
+      `${process.env.DEPLOYMENT_URL}/api/news?id=${id}`
+    );
+
+    const data = await response.json();
+    return {
+      props: {
+        data,
+      },
+    };
+  }
 }
 
 export default News;
