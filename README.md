@@ -48,6 +48,7 @@
 
 Hello, this is my attempt on doing the entry test as a Front End Engineer for IDN MEDIA
 
+<p align="left"><a href="#readme-top">--VIEW DEMO</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
@@ -114,9 +115,7 @@ The **news** section can be clicked and the route will be served dynamically.
 
 ## Demo
 
-I haven't set up the enviroment variable yet, so right now the `getServerSideProps` will return **500: Internal Server ERROR**
-
-But later, this project can be viewed at https://idn-testcase-dhia.vercel.app/
+this project can be viewed at https://idn-testcase-dhia.vercel.app/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
