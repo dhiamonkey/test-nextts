@@ -9,13 +9,11 @@ import { useState } from "react";
 import ProfileTabs from "../components/home/Tabs";
 
 const Home: NextPage = (AllData: any) => {
-  const [selectedTab, setSelectedTab] = useState("quiz");
+  const [selectedTab, setSelectedTab] = useState("news");
 
   const changeRoute = (val: string) => {
     setSelectedTab(val);
   };
-
-  console.log(AllData);
 
   return (
     <div className={styles.container}>
@@ -47,18 +45,33 @@ const Home: NextPage = (AllData: any) => {
 };
 
 export async function getServerSideProps() {
-  const newsResponse = await fetch(`http://localhost:3000/api/news`);
-  const newsdata = await newsResponse.json();
-  const liveResponse = await fetch(`http://localhost:3000/api/livestream`);
-  const livedata = await liveResponse.json();
-  const quizResponse = await fetch(`http://localhost:3000/api/quiz`);
-  const quizdata = await quizResponse.json();
-
-  return {
-    props: {
-      AllData: { newsdata, livedata, quizdata },
-    },
-  };
+  if (process.env.NODE_ENV === "development") {
+    const newsResponse = await fetch(`${process.env.LOCAL_URL}/api/news`);
+    const liveResponse = await fetch(`${process.env.LOCAL_URL}/api/livestream`);
+    const quizResponse = await fetch(`${process.env.LOCAL_URL}/api/quiz`);
+    const newsdata = await newsResponse.json();
+    const livedata = await liveResponse.json();
+    const quizdata = await quizResponse.json();
+    return {
+      props: {
+        AllData: { newsdata, livedata, quizdata },
+      },
+    };
+  } else {
+    const newsResponse = await fetch(`${process.env.DEPLOYMENT_URL}/api/news`);
+    const liveResponse = await fetch(
+      `${process.env.DEPLOYMENT_URL}/api/livestream`
+    );
+    const quizResponse = await fetch(`${process.env.DEPLOYMENT_URL}/api/quiz`);
+    const newsdata = await newsResponse.json();
+    const livedata = await liveResponse.json();
+    const quizdata = await quizResponse.json();
+    return {
+      props: {
+        AllData: { newsdata, livedata, quizdata },
+      },
+    };
+  }
 }
 
 export default Home;
